@@ -16,5 +16,5 @@ class GuestAdmin(admin.ModelAdmin):
     list_filter = ['sign']    # 过滤器
 
 
-admin.site.register(Event, EventAdmin)
-admin.site.register(Guest, GuestAdmin)
+admin.site.register(Event,EventAdmin)
+admin.site.register(Guest,GuestAdmin)

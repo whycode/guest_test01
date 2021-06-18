@@ -123,8 +123,8 @@ def add_guest(request):
 
 # 嘉宾查询接口
 def get_guest_list(request):
-    eid = request.GET.get("eid", "")        # 关联发布会id
-    phone = request.GET.get("phone", "")    # 嘉宾手机号
+    eid = request.GET.get("eid","")        # 关联发布会id
+    phone = request.GET.get("phone","")    # 嘉宾手机号
 
     if eid == '':
         return JsonResponse({'status':10021,'message':'eid cannot be empty'})

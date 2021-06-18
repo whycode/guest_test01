@@ -21,8 +21,7 @@ def login_action(request):
         password = request.POST.get('password', '')
         # if username == 'admin' and password == 'admin123':
         #     # return HttpResponse('login success!')
-        #     print("==进来这个方法了==")
-        #     response = HttpResponseRedirect('/event_manage/')
+        #     response  = HttpResponseRedirect('/event_manage/')
         #     request.session['user'] = username
         #     return response
         user = auth.authenticate(username=username, password=password)
