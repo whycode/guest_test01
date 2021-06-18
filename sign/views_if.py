@@ -185,7 +185,11 @@ def user_sign(request):
         return JsonResponse({'status': 10023, 'message': 'event status is not available'})
 
     event_time = Event.objects.get(id=eid).start_time   # 发布会时间
-    etime = str(event_time).split(".")[0]
+
+    # etime = str(event_time).split(".")[0]
+
+    # event_time =  2021-06-01 12:00:00+00:00   所以需要去掉最后面的+00：00
+    etime = str(event_time).split("+")[0]
     timeArray = time.strptime(etime,"%Y-%m-%d %H:%M:%S")
     e_time = int(time.mktime(timeArray))
 
