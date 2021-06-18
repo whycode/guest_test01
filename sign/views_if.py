@@ -102,17 +102,25 @@ def add_guest(request):
         return JsonResponse({'status': 10024, 'message': 'event number is full'})
 
     event_time = Event.objects.get(id=eid).start_time  # 发布会时间
-    etime = str(event_time).split(".")[0]
+    print('event_time = ',event_time)
+    # event_time =  2021-06-01 12:00:00+00:00   所以需要去掉最后面的+00：00
+    etime = str(event_time).split("+")[0]
+    print('etime = ', etime)
+
     timeArray = time.strptime(etime, "%Y-%m-%d %H:%M:%S")
+    print('timeArray = ', timeArray)
     e_time = int(time.mktime(timeArray))
+    print('e_time = ', e_time)
 
     now_time = str(time.time())
+    print('now_time = ', now_time)
     ntime = now_time.split(".")[0]
+    print('ntime = ', ntime)
     n_time = int(ntime)
+    print('n_time = ', n_time)
 
     if n_time >= e_time:
         return JsonResponse({'status': 10025, 'message': 'event has started'})
-
     try:
         Guest.objects.create(realname=realname, phone=int(phone), email=email, sign=0, event_id=int(eid))
     except IntegrityError:
